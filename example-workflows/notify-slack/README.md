@@ -1,7 +1,9 @@
 # Notify your team with Slack  
 
-This workflow sends a customized message to a channel in your organization's
-Slack messaging app.
+This sample workflow sends a customized message to a channel in your organization's
+Slack messaging app. The workflow should appear on the **Workflows** page in
+your Nebula web interface. If you don't see it there, add the workflow from our
+[examples repo](https://github.com/puppetlabs/nebula-workflow-examples/tree/master/example-workflows/notify-slack) on GitHub. 
 
 ## Prerequisites
 

@@ -1,7 +1,9 @@
 # Sample workflow
 
 This sample workflow models the types of steps you can execute with Nebula. Use
-it to familiarize yourself with the Nebula interface. 
+it to familiarize yourself with the Nebula interface. The workflow should appear on the **Workflows** page in
+your Nebula web interface. If you don't see it there, add the workflow from our
+[examples repo](https://github.com/puppetlabs/nebula-workflow-examples/tree/master/example-workflows/sample-workflow) on GitHub.
 
 To run the workflow from the Nebula web interface, click **Workflows** >
 **sample-workflow** > **Run**. After the run initiates, the run page opens.
