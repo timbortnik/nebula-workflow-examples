@@ -25,8 +25,8 @@ spec:
         run: nebula-example
     spec:
       containers:
-      - name: nebula-example
-        image: docker.io/projectnebula/nebula-example
+      - name: nebula-example-gatsby
+        image: gcr.io/nebula-contrib/nebula-example-gatsby
         ports:
         - containerPort: 80
 ---
