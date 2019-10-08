@@ -54,10 +54,7 @@ Follow these steps to run the workflow:
       - **KEY**: `gitkey`
       - **VALUE**: Enter your base64 encoded GitHub SSH key
 4. Configure your workflow parameters.
-   1. Click **Run** and enter the follwing parameters:
-      - **kubectl_file_path**:
-        `nebula-workflow-examples/example-workflows/gke-provision-and-deploy-workflow/deploy/deploy.yaml`.
-        This is the location of the `kubectl` configuration file in the git repo.
+   - Click **Run** and enter the follwing parameters:
       - **project**: Enter the name of your GCP project
       - **slack_channel**: Enter the name of the Slack channel you'd like to
         notify when the workflow completes. For example, `#nebula-workflows`.
