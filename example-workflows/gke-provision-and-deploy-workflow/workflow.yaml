@@ -63,7 +63,7 @@ steps:
       ssh_key: 
         $type: Secret
         name: gitkey
-      branch: gke-provision-and-deploy-workflow
+      branch: tasks/gke-provision-and-deploy-workflow
       repository: git@github.com:puppetlabs/nebula-workflow-examples.git
 - name: deploy-to-gke
   dependsOn: provision-gke-with-terraform
@@ -91,7 +91,7 @@ steps:
       ssh_key: 
         $type: Secret
         name: gitkey
-      branch: gke-provision-and-deploy-workflow
+      branch: tasks/gke-provision-and-deploy-workflow
       repository: git@github.com:puppetlabs/nebula-workflow-examples.git
 - name: slack-notify
   dependsOn:
