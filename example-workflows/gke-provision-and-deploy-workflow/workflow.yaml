@@ -5,6 +5,7 @@ parameters:
   project:
     description: The name of the project in Google Cloud Platform
   kubectl_file_path:
+    default: 'example-workflows/gke-provision-and-deploy-workflow/deploy/deploy.yaml'
     description: The path to the kubectl config file
   terraform_state_bucket: 
     description: The name of the bucket you'd like to store terraform state in
