@@ -53,7 +53,7 @@ steps:
         $type: Parameter
         name: project
     workspace: production
-    directory: example-workflows/gke-provision-and-deploy-workfow/infra/
+    directory: example-workflows/gke-provision-and-deploy-workflow/infra/
     credentials:
       credentials.json:
         $type: Secret
