@@ -1,6 +1,6 @@
-# Deploy a Gatsby site to Google Cloud Project with Terraform       
+# Deploy a Gatsby site to Google Cloud Platform with Terraform       
 
-This sample workflow deploys a simple Gatsby site to Google Cloud Project (GCP).
+This sample workflow deploys a simple Gatsby site to Google Cloud Platform (GCP).
 The workflow provisions a Google Kubernetes Engine (GKE) cluster on
 GCP using Terraform, and deploys the app to the cluster.
 
