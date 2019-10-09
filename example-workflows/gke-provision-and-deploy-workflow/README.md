@@ -54,7 +54,7 @@ Follow these steps to run the workflow:
       - **KEY**: `gitkey`
       - **VALUE**: Enter your base64 encoded GitHub SSH key
 4. Configure your workflow parameters.
-   - Click **Run** and enter the follwing parameters:
+   1. Click **Run** and enter the following parameters:
       - **project**: Enter the name of your GCP project
       - **slack_channel**: Enter the name of the Slack channel you'd like to
         notify when the workflow completes. For example, `#nebula-workflows`.
