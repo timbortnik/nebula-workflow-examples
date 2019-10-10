@@ -57,7 +57,9 @@ Follow these steps to run the workflow:
         Terraform stores its state. The name must be globally unique. 
 4. Click **Run workflow** and wait for the workflow run page to appear. 
 
-To find the URL for your Gatsby app:
+## Open the Gatsby site in a browser
+
+To find the URL for your Gatsby site:
 1. From your GCP console, click **Kubernetes Engine** > **Services and Ingress**.
 2. Copy the endpoint for **nebula-example** and paste the URL into a browser.
 
