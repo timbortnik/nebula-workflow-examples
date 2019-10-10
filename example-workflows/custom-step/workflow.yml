@@ -27,7 +27,7 @@ steps:
   -  echo ""
   -  echo "Your name is ${NAME}" 
   -  echo ""
-  -  echo "We got this from passing the parameter from the Workflow to the Step through the spec."
+  -  echo "We got this from passing the parameter from the Workflow to the Step through the spec parameter."
   spec: 
     name:
       $type: Parameter
@@ -43,7 +43,7 @@ steps:
   -  echo ""
   -  echo "Your secret is ${SECRET}"
   -  echo ""
-  -  echo "You can define a secret by declaring the parameter as /$type Secret which must be defined in the Workflow Secrets"
+  -  echo "You can define a secret by declaring the parameter as \$type Secret which must be defined in the Workflow Secrets"
   -  echo "Within the Step, both plaintext parameters and secrets are accessed the same way"
   spec:
     secret:
