@@ -63,10 +63,7 @@ steps:
         name: credentials
     git:
       name: nebula-workflow-examples
-      ssh_key: 
-        $type: Secret
-        name: gitkey
-      repository: git@github.com:puppetlabs/nebula-workflow-examples.git
+      repository: https://github.com/puppetlabs/nebula-workflow-examples.git
 - name: deploy-to-gke
   dependsOn: provision-gke-with-terraform
   image: projectnebula/kubectl
@@ -90,10 +87,7 @@ steps:
         taskName: provision-gke-with-terraform
     git:
       name: nebula-workflow-examples
-      ssh_key: 
-        $type: Secret
-        name: gitkey
-      repository: git@github.com:puppetlabs/nebula-workflow-examples.git
+      repository: https://github.com/puppetlabs/nebula-workflow-examples.git
 - name: slack-notify
   dependsOn:
     - deploy-to-gke
