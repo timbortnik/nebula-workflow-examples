@@ -10,9 +10,7 @@ it there, add the workflow from our [examples repo](https://github.com/puppetlab
 ## Prerequisites
 
 Before you run the workflow, make sure you have access to the following:
-- A Slack authentication token. For more information, see [Getting a Slack token](https://get.slack.help/hc/en-us/articles/215770388-Create-and-regenerate-API-tokens).
-- An SSH key associated with your GitHub account. Encode the key using the base64
-  encoding scheme.  
+- A Slack authentication token. For more information, see [Getting a Slack token](https://get.slack.help/hc/en-us/articles/215770388-Create-and-regenerate-API-tokens). 
 - A GCP project
 - A GCP service account with the following permissions:
   - Cloud KMS Admin
@@ -48,12 +46,7 @@ Follow these steps to run the workflow:
    2. Click **Define new secret** and use the following values:
       - **KEY**: `credentials`
       - **VALUE**: Enter your base64 encoded GCP service account key
-3. Add your GitHub SSH key as a secret.
-   1. Click **Edit** > **Secrets**.
-   2. Click **Define new secret** and use the following values:
-      - **KEY**: `gitkey`
-      - **VALUE**: Enter your base64 encoded GitHub SSH key
-4. Configure your workflow parameters.
+3. Configure your workflow parameters.
    1. Click **Run** and enter the following parameters:
       - **project**: Enter the name of your GCP project
       - **slack_channel**: Enter the name of the Slack channel you'd like to
@@ -62,9 +55,11 @@ Follow these steps to run the workflow:
         example, `K8s cluster successfully provisioned with Nebula!`
       - **terraform_state_bucket**: The name of the Google Storage bucket where
         Terraform stores its state. The name must be globally unique. 
-5. Click **Run workflow** and wait for the workflow run page to appear. 
+4. Click **Run workflow** and wait for the workflow run page to appear. 
 
-To find the URL for your Gatsby app:
+## Open the Gatsby site in a browser
+
+To find the URL for your Gatsby site:
 1. From your GCP console, click **Kubernetes Engine** > **Services and Ingress**.
 2. Copy the endpoint for **nebula-example** and paste the URL into a browser.
 
