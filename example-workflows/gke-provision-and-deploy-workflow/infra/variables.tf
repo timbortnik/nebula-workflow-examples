@@ -22,17 +22,6 @@ variable "initial_node_count" {
   description = "Number of worker VMs to initially create"
   default = 1
 }
-
-variable "master_username" {
-  description = "Username for accessing the Kubernetes master endpoint"
-  default = "k8smaster"
-}
-
-variable "master_password" {
-  description = "Password for accessing the Kubernetes master endpoint"
-  default = "k8smasterk8smaster"
-}
-
 variable "node_machine_type" {
   description = "GCE machine type"
   default = "n1-standard-1"
