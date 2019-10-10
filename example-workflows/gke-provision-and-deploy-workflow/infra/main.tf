@@ -18,8 +18,8 @@ provider "google" {
 }
 
 resource "google_container_cluster" "k8scluster" {
-  name               = "k8scluster"
-  description        = "Kubernetes cluster"
+  name               = "gke-provision-and-deploy-workflow-cluster"
+  description        = "A cluster created from an example workflow in Project Nebula"
   location           = "${local.workspace["gcp_location"]}"
   initial_node_count = "${var.initial_node_count}"
 
