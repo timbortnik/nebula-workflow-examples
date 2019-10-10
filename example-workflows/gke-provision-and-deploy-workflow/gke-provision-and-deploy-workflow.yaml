@@ -63,6 +63,7 @@ steps:
         name: credentials
     git:
       name: nebula-workflow-examples
+      branch: tasks/simplify-auth
       ssh_key: 
         $type: Secret
         name: gitkey
@@ -93,6 +94,7 @@ steps:
       ssh_key: 
         $type: Secret
         name: gitkey
+      branch: tasks/simplify-auth
       repository: git@github.com:puppetlabs/nebula-workflow-examples.git
 - name: slack-notify
   dependsOn:
