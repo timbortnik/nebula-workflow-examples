@@ -7,5 +7,5 @@ output "k8s_master_auth_cluster_ca_certificate" {
 }
 
 output "k8s_current_access_token" {
-  value = "${lookup(data.kubernetes_secret.app-helm-client-default-secret.data, "token")}"
+  value = "${data.google_client_config.current.access_token}"
 }
