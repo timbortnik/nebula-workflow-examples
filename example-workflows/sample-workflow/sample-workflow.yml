@@ -68,7 +68,7 @@ steps:
     description: ""
     image: alpine:latest
     input:
-      - echo "Updating PORSCHE-134 to deployment to stage complete"
+      - echo "Update to stage complete"
       - sleep 3
     dependsOn:
       - Step-5-Manual-approval-to-Prod
