@@ -11,6 +11,56 @@ parameters:
     description: Slack message
 
 steps:
+- name: create-website-bucket
+  image: projectnebula/cloudformation-deployer
+  spec:
+    aws:
+      accessKeyID:
+        $type: Secret
+        name: aws_access_key_id
+      secretAccessKey:
+        $type: Secret
+        name: aws_access_key_secret
+      region: us-west-2
+    stackName: nebula-stackery-demo-website-bucket
+    template: |
+      AWSTemplateFormatVersion: 2010-09-09
+      Description: Nebula stackery example bucket
+      Resources:
+        WebsiteBucket:
+          Type: AWS::S3::Bucket
+          Properties:
+            AccessControl: PublicRead
+            WebsiteConfiguration:
+              IndexDocument: index.html
+              ErrorDocument: error.html
+          DeletionPolicy: Retain
+        BucketPolicy:
+          Type: AWS::S3::BucketPolicy
+          Properties:
+            PolicyDocument:
+              Id: MyPolicy
+              Version: 2012-10-17
+              Statement:
+                - Sid: PublicReadForGetBucketObjects
+                  Effect: Allow
+                  Principal: '*'
+                  Action: 's3:GetObject'
+                  Resource: !Join 
+                    - ''
+                    - - 'arn:aws:s3:::'
+                      - !Ref WebsiteBucket
+                      - /*
+            Bucket: !Ref WebsiteBucket
+      Outputs:
+        BucketName:
+          Value: !Ref WebsiteBucket
+          Description: The name of the bucket
+        WebsiteURL:
+          Value: !GetAtt 
+            - WebsiteBucket
+            - WebsiteURL
+          Description: URL for website hosted on S3
 - name: stackery-deploy
   image: projectnebula/stackery-deploy
   spec:
