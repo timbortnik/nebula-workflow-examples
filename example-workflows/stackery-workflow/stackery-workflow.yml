@@ -1,0 +1,58 @@
+version: v1
+
+parameters:
+  stack_name:
+    description: The stack name you wish to deploy as its defined in stackery
+  environment_name:
+    description: The environment you wish to deploy to as its defined in stackery
+  slack_channel:
+    description: Slack channel (include preceding hashtag)
+  slack_message:
+    description: Slack message
+
+steps:
+- name: stackery-deploy
+  image: projectnebula/stackery-deploy
+  spec:
+    stackery: 
+      key: 
+        $type: Secret
+        name: stackery_api_key
+      secret:
+        $type: Secret
+        name: stackery_api_secret
+    stackName: 
+      $type: Parameter
+      name: stack_name
+    environmentName: 
+      $type: Parameter
+      name: environment_name
+    aws:
+      accessKeyID:
+        $type: Secret
+        name: aws_access_key_id
+      secretAccessKey:
+        $type: Secret
+        name: aws_access_key_secret
+      region: us-west-2
+    git: 
+      ssh_key: 
+        $type: Secret
+        name: git_ssh_key
+      name: deploy
+      branch: master
+      repository: git@github.com:woodburndesigns/woodburndesigns.git
+- name: slack-notify
+  dependsOn:
+    - stackery-deploy
+  image: projectnebula/slack-notification
+  spec:
+    apitoken:
+       $type: Secret
+       name: slack_token
+    channel:
+       $type: Parameter
+       name: slack_channel
+    message:
+       $type: Parameter
+       name: slack_message
