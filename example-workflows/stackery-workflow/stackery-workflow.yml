@@ -38,7 +38,7 @@ steps:
       region: us-west-2
     git: 
       name: deploy
-      branch: master
+      branch: tasks/stackery
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
 - name: slack-notify
   dependsOn:
