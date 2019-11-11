@@ -36,12 +36,9 @@ steps:
         name: aws_access_key_secret
       region: us-west-2
     git: 
-      ssh_key: 
-        $type: Secret
-        name: git_ssh_key
       name: deploy
       branch: master
-      repository: git@github.com:woodburndesigns/woodburndesigns.git
+      repository: https://github.com/puppetlabs/nebula-workflow-examples.git
 - name: slack-notify
   dependsOn:
     - stackery-deploy
