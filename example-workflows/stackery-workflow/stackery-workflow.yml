@@ -126,3 +126,4 @@ steps:
     message:
        $type: Parameter
        name: slack_message
+    confetti: true
