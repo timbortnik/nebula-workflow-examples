@@ -64,6 +64,10 @@ steps:
             - WebsiteBucket
             - WebsiteURL
           Description: URL for website hosted on S3
+    confetti:
+      $type: Parameter
+      name: confetti      
+
 - name: stackery-deploy
   image: projectnebula/stackery-deploy
   spec:
@@ -96,6 +100,7 @@ steps:
     confetti: 
       $type: Parameter
       name: confetti
+
 - name: upload-to-s3
   image: projectnebula/s3-uploader
   dependsOn: 
@@ -122,6 +127,7 @@ steps:
     confetti: 
       $type: Parameter
       name: confetti
+      
 - name: slack-notify
   dependsOn: upload-to-s3
   image: projectnebula/slack-notification
