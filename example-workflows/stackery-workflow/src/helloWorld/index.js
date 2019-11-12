@@ -6,9 +6,10 @@ exports.handler = async (event, context) => {
   const response = {
     statusCode: 200,
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     },
-    body: JSON.stringify({ hello: 'nebula' }, undefined, 2)
+    body: JSON.stringify({ hello: 'world' }, undefined, 2)
   };
 
   return response;

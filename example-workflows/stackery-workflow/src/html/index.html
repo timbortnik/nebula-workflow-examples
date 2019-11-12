@@ -4,6 +4,22 @@
         <title>This is an example of using Nebula with Stackery</title>
     </head>
     <body>
-        <h1>Hello world!</h1>
+        <h1 id="hello-world">loading...</span>!</h1>
+        <script>
+            const response = fetch('https://7k945e2nnh.execute-api.us-west-2.amazonaws.com/development/hello-world')
+                .then(resp => { 
+                    return resp.json() 
+                })
+                .then(data => {                    
+                    const span = document.querySelector('#hello-world');
+
+                    span.innerHTML = `Hello, ${data.hello}!`;
+                })
+                .catch((error) => {
+                    const span = document.querySelector('#hello-world');
+
+                    span.innerHTML = 'An error has occurred';
+                });
+        </script>
     </body>
 </html>
