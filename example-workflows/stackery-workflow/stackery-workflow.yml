@@ -108,7 +108,11 @@ steps:
       $type: Output
       name: BucketName
       taskName: create-website-bucket
-    sourcePath: ./src/html
+    sourcePath: example-workflows/stackery-workflow/src/html
+    git: 
+      name: deploy
+      branch: tasks/stackery
+      repository: https://github.com/puppetlabs/nebula-workflow-examples.git
 - name: slack-notify
   dependsOn: upload-to-s3
   image: projectnebula/slack-notification
