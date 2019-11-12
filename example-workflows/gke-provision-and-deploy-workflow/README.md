@@ -4,7 +4,7 @@ This sample workflow deploys a simple Gatsby site to Google Cloud Platform (GCP)
 The workflow provisions a Google Kubernetes Engine (GKE) cluster on
 GCP using Terraform, and deploys the app to the cluster.
 
-The workflow should appear on the **Workflows** page in your Nebula web interface. If you don't see
+The workflow appears on the **Workflows** page in your Nebula web interface. If you don't see
 it there, add the workflow from our [examples repo](https://github.com/puppetlabs/nebula-workflow-examples/tree/master/example-workflows/gke-provision-and-deploy-workflow) on GitHub. 
 
 ## Prerequisites
