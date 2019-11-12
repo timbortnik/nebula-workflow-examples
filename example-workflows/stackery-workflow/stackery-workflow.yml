@@ -9,6 +9,9 @@ parameters:
     description: Slack channel (include preceding hashtag)
   slack_message:
     description: Slack message
+  confetti: 
+    description: Shoots confetti over everything.  Makes a mess. 
+    default: false
 
 steps:
 - name: create-website-bucket
@@ -90,6 +93,9 @@ steps:
       name: deploy
       branch: tasks/stackery
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
+    confetti: 
+      $type: Parameter
+      name: confetti
 - name: upload-to-s3
   image: projectnebula/s3-uploader
   dependsOn: 
@@ -113,6 +119,9 @@ steps:
       name: deploy
       branch: tasks/stackery
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
+    confetti: 
+      $type: Parameter
+      name: confetti
 - name: slack-notify
   dependsOn: upload-to-s3
   image: projectnebula/slack-notification
@@ -126,4 +135,6 @@ steps:
     message:
        $type: Parameter
        name: slack_message
-    confetti: true
+    confetti: 
+      $type: Parameter
+      name: confetti
