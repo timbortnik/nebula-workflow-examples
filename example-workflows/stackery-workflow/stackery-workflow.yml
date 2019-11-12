@@ -90,9 +90,27 @@ steps:
       name: deploy
       branch: tasks/stackery
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
-- name: slack-notify
-  dependsOn:
+- name: upload-to-s3
+  image: projectnebula/s3-uploader
+  dependsOn: 
     - stackery-deploy
+    - create-website-bucket
+  spec: 
+    aws: 
+      accessKeyID:
+        $type: Secret
+        name: aws_access_key_id
+      secretAccessKey:
+        $type: Secret
+        name: aws_access_key_secret
+      region: us-west-2
+    bucket: 
+      $type: Output
+      name: BucketName
+      taskName: create-website-bucket
+    sourcePath: ./src/html
+- name: slack-notify
+  dependsOn: upload-to-s3
   image: projectnebula/slack-notification
   spec:
     apitoken:
