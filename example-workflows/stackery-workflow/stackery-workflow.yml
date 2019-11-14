@@ -7,8 +7,6 @@ parameters:
     description: The environment you wish to deploy to as its defined in stackery
   slack_channel:
     description: Slack channel (include preceding hashtag)
-  slack_message:
-    description: Slack message
   confetti: 
     description: Shoots confetti over everything.  Makes a mess. 
     default: false
