@@ -139,8 +139,9 @@ steps:
        $type: Parameter
        name: slack_channel
     message:
-       $type: Parameter
-       name: slack_message
+       $type: Outputs
+       name: WebsiteURL
+       taskName: create-website-bucket
     confetti: 
       $type: Parameter
       name: confetti
