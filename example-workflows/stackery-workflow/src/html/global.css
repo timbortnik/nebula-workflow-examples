@@ -34,3 +34,114 @@ img {
     color: white;
     font-family: Helvetica, Arial, sans-serif;
 }
+
+body {
+    background-color: #F5F8FA;
+    margin: 0;
+    padding: 0;
+}
+  
+.red {
+    background-color: #F2654B;
+}
+
+.amber {
+    background-color: #FFAE1A;
+}
+
+.teal {
+    background-color: #11D1B6;
+}
+
+.purple {
+    background-color: #9263FF;
+}
+
+h4 {
+    font-family: Calibre;
+    font-size: 18px;
+    font-weight: 600;
+    color: #222629;
+    line-height: 24px;
+    margin: 0;
+}
+
+.demo-card {
+    width: 206px;
+    height: 76px;
+    background-color: #FFF;
+    border: 1px solid #CCD4D9;
+    border-radius: 4px;
+    padding: 16px 16px 24px;
+    margin-left: -119px;
+    position: absolute;
+    left: 20vw;
+    top: 80vh;
+    z-index:-1;
+}
+
+.status {
+    position: absolute;
+    z-index: 1;
+    right: -6px;
+    top: -6px;
+    background-color: #07A345;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+.checkmark {
+    fill: #FFF;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.node {
+    position: absolute;
+    z-index: 1;
+    left: 113px;
+    top: -6px;
+    background-color: #FFF;
+    border: 3px solid #07A345;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+}
+
+.time {
+    width: 100%;
+    background-color: #D6FFE7;
+    height: 16px;
+    border-radius: 2px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.time-start, .time-duration {
+    font-family: Calibre;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    color: #035223;
+    display: inline;
+    margin: 0 4px 0;
+}
+
+.time-duration {
+    float: right;
+}
+
+.image, .image-value {
+    font-family: 'Open Sans';
+    font-size: 12px;
+    line-height: 18px;
+    color: #5D6F7A;
+    display: inline;
+}
+
+.image {
+    font-weight: 700;
+    margin-right: 40px;
+}
