@@ -1,0 +1,36 @@
+html {
+    height: 100%;
+}
+
+img {
+    height: 40px;
+    display: none;
+}
+
+.serverless {
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(90deg,#e00a6b 0,#c80e6a 7.28%,#971667 24.1%,#6d1d64 40.76%,#4d2262 56.93%,#362661 72.49%,#292860 87.15%,#242960 100%)
+}
+
+.serverless img {
+    display: inline-block;
+}
+
+.serverless .flex-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.serverless .flex-inner {
+    justify-content: center;
+}
+
+.serverless h1 {
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+}

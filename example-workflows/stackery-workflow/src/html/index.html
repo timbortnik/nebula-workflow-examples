@@ -2,9 +2,15 @@
 <html>
     <head>
         <title>This is an example of using Nebula with Stackery</title>
+        <link rel="stylesheet" href="./global.css" />
     </head>
     <body>
-        <h1 id="hello-world">loading...</span>!</h1>
+        <div class="flex-container">
+            <div>
+                <h1 id="hello-world">loading...</span>!</h1>
+                <image src="https://www.cncf.io/wp-content/themes/salient-child/assets/images/cncf-white.svg" />
+            </div>
+        </div>
         <script>
             const response = fetch('https://7k945e2nnh.execute-api.us-west-2.amazonaws.com/development/hello-world')
                 .then(resp => { 
