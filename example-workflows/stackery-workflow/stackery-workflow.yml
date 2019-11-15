@@ -99,6 +99,20 @@ steps:
       $type: Parameter
       name: confetti
 
+- name: test-output
+  image: projectnebula/core
+  dependsOn: create-website-bucket
+  input: 
+  -  OUTPUT=$(ni get -p {.output})
+  -  echo ""
+  -  echo "Echoing output from previous step..."
+  -  echo "${OUTPUT}"
+  spec: 
+    output:
+      $type: Output
+      name: WebsiteURL
+      taskName: create-website-bucket
+
 - name: upload-to-s3
   image: projectnebula/s3-uploader
   dependsOn: 
