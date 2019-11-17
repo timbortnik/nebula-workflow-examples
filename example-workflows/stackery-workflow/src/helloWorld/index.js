@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     },
-    body: JSON.stringify({ hello: 'Serverless Practitioner Summit' }, undefined, 2)
+    body: JSON.stringify({ hello: 'World' }, undefined, 2)
   };
 
   return response;
