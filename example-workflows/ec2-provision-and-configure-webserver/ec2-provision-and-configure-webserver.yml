@@ -12,7 +12,6 @@ parameters:
     default: nebula-bolt
   terraform_state_bucket:
     description: The name of the bucket you'd like to store terraform state in
-    default: terraform-remote-jva-nebula
 
 steps:
 - name: provision-s3-remote-state-bucket
