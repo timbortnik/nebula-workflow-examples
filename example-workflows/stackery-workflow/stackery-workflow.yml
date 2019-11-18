@@ -99,7 +99,7 @@ steps:
       $type: Parameter
       name: confetti
 
-- name: upload-to-s3
+- name: deploy-front-end
   image: projectnebula/s3-uploader
   dependsOn: 
     - stackery-deploy
@@ -127,7 +127,7 @@ steps:
       name: confetti
       
 - name: slack-notify
-  dependsOn: upload-to-s3
+  dependsOn: deploy-front-end
   image: projectnebula/slack-notification
   spec:
     apitoken:
