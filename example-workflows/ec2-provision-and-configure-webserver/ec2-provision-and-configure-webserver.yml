@@ -81,6 +81,7 @@ steps:
     type: plan
     name: example::webserver
     projectDir: example-workflows/ec2-provision-and-configure-webserver/Boltdir/
+    installModules: true
     targets:
       $type: Output
       taskName: provision-ec2-with-terraform
