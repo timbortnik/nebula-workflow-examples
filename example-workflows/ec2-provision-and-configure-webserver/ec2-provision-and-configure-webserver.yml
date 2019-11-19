@@ -70,8 +70,8 @@ steps:
         $type: Secret
         name: credentials
     git:
-      name: aws-workflow-example
-      repository: https://github.com/Joris29/nebula-aws-provision.git
+      name: nebula-workflow-examples
+      repository: https://github.com/Joris29/nebula-workflow-examples.git
 
 - name: configure-apache-bolt
   dependsOn:
@@ -96,5 +96,5 @@ steps:
       privateKey: id_rsa
       verifyHost: false
     git:
-      name: aws-workflow-example
-      repository: https://github.com/Joris29/nebula-aws-provision.git
+      name: nebula-workflow-examples
+      repository: https://github.com/Joris29/nebula-workflow-examples.git
