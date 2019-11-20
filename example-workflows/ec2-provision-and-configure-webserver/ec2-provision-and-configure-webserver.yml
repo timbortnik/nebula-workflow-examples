@@ -76,7 +76,7 @@ steps:
       name: nebula-workflow-examples
       repository:
         $type: Parameter
-        name: GitRepository
+        name: git_repository
 
 - name: configure-apache-bolt
   dependsOn:
