@@ -31,9 +31,9 @@ Follow these steps to run the workflow:
       - **KEY:** id_rsa
       - **VALUE:** Enter your private key content
       
-      Example:
-      -----BEGIN RSA PRIVATE KEY-----
-      RANDOMSTRING
+      Example:  
+      -----BEGIN RSA PRIVATE KEY-----  
+      RANDOMSTRING  
       -----END RSA PRIVATE KEY-----
 
 3. Configure your workflow parameters.
