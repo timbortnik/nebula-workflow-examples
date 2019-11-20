@@ -2,6 +2,9 @@ version: v1
 description: Nebula Deploy Demo To AWS
 
 parameters:
+  GitRepository:
+    description: The git repository where files are located
+    default: https://github.com/puppetlabs/nebula-workflow-examples.git
   aws_region:
     description: The AWS region to deploy S3 bucket + EC2 instance
     default: eu-west-1
@@ -71,7 +74,9 @@ steps:
         name: credentials
     git:
       name: nebula-workflow-examples
-      repository: https://github.com/Joris29/nebula-workflow-examples.git
+      repository:
+        $type: Parameter
+        name: GitRepository
 
 - name: configure-apache-bolt
   dependsOn:
@@ -97,4 +102,6 @@ steps:
       verifyHost: false
     git:
       name: nebula-workflow-examples
-      repository: https://github.com/Joris29/nebula-workflow-examples.git
+      repository:
+        $type: Parameter
+        name: GitRepository
