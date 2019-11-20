@@ -17,10 +17,10 @@ Follow these steps to run the workflow:
       - **KEY:** credentials
       - **VALUE:** Enter your base64 encoded AWS account
       
-      Example:
-      [default]
-      aws_access_key_id = RANDOMKEY
-      aws_secret_access_key = RANDOMKEY
+      Example:  
+      [default]  
+      aws_access_key_id = RANDOMKEY  
+      aws_secret_access_key = RANDOMKEY  
       
       Encode with base64:
       W2RlZmF1bHRdCmF3c19hY2Nlc3Nfa2V5X2lkID0gUkFORE9NS0VZCmF3c19zZWNyZXRfYWNjZXNzX2tleSA9IFJBTkRPTUtFWQ==
