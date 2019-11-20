@@ -1,0 +1,107 @@
+version: v1
+description: Nebula Deploy Demo To AWS
+
+parameters:
+  git_repository:
+    description: The git repository where files are located
+    default: https://github.com/puppetlabs/nebula-workflow-examples.git
+  aws_region:
+    description: The AWS region to deploy S3 bucket + EC2 instance
+    default: eu-west-1
+  vpc_id:
+    description: The AWS vpc id to deploy EC2 instance
+  ssh_key_name:
+    description: The AWS ssh key for the EC2 instance
+    default: nebula-bolt
+  terraform_state_bucket:
+    description: The name of the bucket you'd like to store terraform state in
+
+steps:
+- name: provision-s3-remote-state-bucket
+  image: projectnebula/core
+  input:
+    - apk --no-cache add python3 curl &&
+      curl -O https://bootstrap.pypa.io/get-pip.py &&
+      python3 get-pip.py &&
+      pip3 install awscli --upgrade &&
+      BUCKET_REGION=$(ni get -p {.region}) &&
+      BUCKET_NAME=$(ni get -p {.bucket}) &&
+      ni get -p {.credentials} &&
+      ni credentials config &&
+      export AWS_CONFIG_FILE=/workspace/credentials &&
+      if aws s3api list-buckets --query "Buckets[].Name" | grep $BUCKET_NAME; then exit 0; else aws s3api create-bucket --bucket $BUCKET_NAME --region $BUCKET_REGION --create-bucket-configuration LocationConstraint=$BUCKET_REGION && exit 0; fi
+  spec:
+    region:
+      $type: Parameter
+      name: aws_region
+    bucket: 
+      $type: Parameter
+      name: terraform_state_bucket
+    credentials:
+      credentials:
+        $type: Secret
+        name: credentials
+
+- name: provision-ec2-with-terraform
+  dependsOn:
+    - provision-s3-remote-state-bucket
+  image: projectnebula/terraform
+  spec:
+    backendConfig:
+      bucket: 
+        $type: Parameter
+        name: terraform_state_bucket
+      key: nebula
+      region: 
+        $type: Parameter
+        name: aws_region
+      shared_credentials_file: /workspace/credentials
+    vars:
+      vpc_id: 
+        $type: Parameter
+        name: vpc_id
+      aws_region:
+        $type: Parameter
+        name: aws_region
+      key_name:
+        $type: Parameter
+        name: ssh_key_name
+    workspace: production
+    directory: example-workflows/ec2-provision-and-configure-webserver/infra/
+    credentials:
+      credentials:
+        $type: Secret
+        name: credentials
+    git:
+      name: nebula-workflow-examples
+      repository:
+        $type: Parameter
+        name: git_repository
+
+- name: configure-apache-bolt
+  dependsOn:
+    - provision-ec2-with-terraform
+  image: projectnebula/bolt-run
+  spec:
+    type: plan
+    name: example::webserver
+    projectDir: example-workflows/ec2-provision-and-configure-webserver/Boltdir/
+    installModules: true
+    targets:
+      $type: Output
+      taskName: provision-ec2-with-terraform
+      name: EC2_IP
+    credentials:
+      id_rsa:
+        $type: Secret
+        name: id_rsa
+    transport:
+      type: ssh
+      user: ubuntu
+      privateKey: id_rsa
+      verifyHost: false
+    git:
+      name: nebula-workflow-examples
+      repository:
+        $type: Parameter
+        name: git_repository
