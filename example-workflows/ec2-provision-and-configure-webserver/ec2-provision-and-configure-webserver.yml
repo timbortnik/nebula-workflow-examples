@@ -2,7 +2,7 @@ version: v1
 description: Nebula Deploy Demo To AWS
 
 parameters:
-  GitRepository:
+  git_repository:
     description: The git repository where files are located
     default: https://github.com/puppetlabs/nebula-workflow-examples.git
   aws_region:
@@ -104,4 +104,4 @@ steps:
       name: nebula-workflow-examples
       repository:
         $type: Parameter
-        name: GitRepository
+        name: git_repository

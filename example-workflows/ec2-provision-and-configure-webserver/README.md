@@ -47,6 +47,7 @@
 <ul>
     <li>Click <strong>Run</strong> and enter the following parameters:</li>
     <ul>
+        <li><strong>git_repository:</strong> Enter the git repository where files are located</li>
         <li><strong>aws_region:</strong> Enter the AWS region you want to use</li>
         <li><strong>ssh_key_name:</strong> Enter the AWS ssh key name can be found in the AWS console and is set when you create/upload your key to AWS</li>
         <li><strong>terraform_state_bucket:</strong> The name of the S3 Storage bucket where Terraform stores its state. The name must be globally unique.</li>
