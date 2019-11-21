@@ -15,14 +15,8 @@ steps:
 - name: slack-notify
   image: projectnebula/slack-notification
   spec:
-    apitoken:
-       $type: Secret
-       name: slack-token
-    channel:
-       $type: Parameter
-       name: channel
-    message:
-       $type: Parameter
-       name: message
+    apitoken: !Secret slack-token
+    channel: !Parameter channel
+    message: !Parameter message
   dependsOn:
   - init-workflow
