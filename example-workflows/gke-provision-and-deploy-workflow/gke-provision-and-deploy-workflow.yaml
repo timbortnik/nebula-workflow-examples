@@ -30,37 +30,25 @@ steps:
       gcloud config set component_manager/disable_update_check true &&
       if gsutil ls | grep -q gs://$TERRAFORM_STATE_BUCKET; then exit 0; else gsutil mb -l us-west1 gs://$TERRAFORM_STATE_BUCKET; fi
   spec:
-    gcp_project: 
-      $type: Parameter
-      name: project
-    bucket: 
-      $type: Parameter
-      name: terraform_state_bucket
+    gcp_project: !Parameter project
+    bucket: !Parameter terraform_state_bucket
     credentials:
-      credentials.json:
-        $type: Secret
-        name: credentials
+      credentials.json: !Secret credentials
 - name: provision-gke-with-terraform
   dependsOn:
     - provision-gcs-storage-bucket
   image: projectnebula/terraform
   spec:
     backendConfig:
-      bucket: 
-        $type: Parameter
-        name: terraform_state_bucket
+      bucket: !Parameter terraform_state_bucket
     vars:
       gcp_region: us-west1
       gcp_location: us-west1-a
-      gcp_project: 
-        $type: Parameter
-        name: project
+      gcp_project: !Parameter project
     workspace: production
     directory: example-workflows/gke-provision-and-deploy-workflow/infra/
     credentials:
-      credentials.json:
-        $type: Secret
-        name: credentials
+      credentials.json: !Secret credentials
     git:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
@@ -73,18 +61,9 @@ steps:
     namespace: default
     cluster:
       name: nebula-example-cluster
-      url:
-        $type: Output
-        name: k8s_endpoint
-        taskName: provision-gke-with-terraform
-      cadata:
-        $type: Output
-        name: k8s_master_auth_cluster_ca_certificate
-        taskName: provision-gke-with-terraform
-      token:
-        $type: Output
-        name: k8s_current_access_token
-        taskName: provision-gke-with-terraform
+      url: !Output [provision-gke-with-terraform, k8s_endpoint]
+      cadata: !Output [provision-gke-with-terraform, k8s_master_auth_cluster_ca_certificate]
+      token: !Output [provision-gke-with-terraform, k8s_current_access_token]
     git:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
@@ -93,12 +72,6 @@ steps:
     - deploy-to-gke
   image: projectnebula/slack-notification
   spec:
-    apitoken:
-       $type: Secret
-       name: slacktoken
-    channel:
-       $type: Parameter
-       name: slack_channel
-    message:
-       $type: Parameter
-       name: slack_message
+    apitoken: !Secret slacktoken
+    channel: !Parameter slack_channel
+    message: !Parameter slack_message
