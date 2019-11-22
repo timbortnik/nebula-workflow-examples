@@ -41,7 +41,7 @@ steps:
   -  echo ""
   -  echo "Your secret is ${SECRET}"
   -  echo ""
-  -  echo "You can define a secret by declaring the parameter as \$type Secret which must be defined in the Workflow Secrets"
+  -  echo "You can pass a Secret to the Step by defining the parameter as !Secret which must correspond to an added Workflow Secret"
   -  echo "Within the Step, both plaintext parameters and secrets are accessed the same way"
   spec:
     secret: !Secret secret
