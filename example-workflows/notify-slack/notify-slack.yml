@@ -8,21 +8,9 @@ parameters:
     description: Slack message
 
 steps:
-- name: init-workflow
-  image: alpine:latest
-  input:
-    - echo "Initializing workflow - Notify with Slack"
 - name: slack-notify
   image: projectnebula/slack-notification
   spec:
-    apitoken:
-       $type: Secret
-       name: slack-token
-    channel:
-       $type: Parameter
-       name: channel
-    message:
-       $type: Parameter
-       name: message
-  dependsOn:
-  - init-workflow
+    apitoken: !Secret slack-token
+    channel: !Parameter channel
+    message: !Parameter message
