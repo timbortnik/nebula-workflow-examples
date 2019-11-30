@@ -67,11 +67,18 @@ steps:
     git:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
-- name: slack-notify
-  dependsOn:
-    - deploy-to-gke
-  image: projectnebula/slack-notification
+- name: drop-from-gke
+  dependsOn: de-provision-gke-with-terraform
+  image: projectnebula/kubectl
   spec:
-    apitoken: !Secret slacktoken
-    channel: !Parameter slack_channel
-    message: !Parameter slack_message
+    command: destroy
+    file: example-workflows/gke-provision-and-deploy-workflow/deploy/deploy.yaml
+    namespace: default
+    cluster:
+      name: nebula-example-cluster
+      url: !Output [provision-gke-with-terraform, k8s_endpoint]
+      cadata: !Output [provision-gke-with-terraform, k8s_master_auth_cluster_ca_certificate]
+      token: !Output [provision-gke-with-terraform, k8s_current_access_token]
+    git:
+      name: nebula-workflow-examples
+      repository: https://github.com/puppetlabs/nebula-workflow-examples.git      
