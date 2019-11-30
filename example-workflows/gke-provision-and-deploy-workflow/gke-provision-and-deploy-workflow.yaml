@@ -21,7 +21,7 @@ steps:
       if gsutil ls | grep -q gs://$TERRAFORM_STATE_BUCKET; then exit 0; else gsutil mb -l us-west1 gs://$TERRAFORM_STATE_BUCKET; fi
   spec:
     gcp_project: !Secret project
-    bucket: !Parameter terraform_state_bucket
+    bucket: !Secret terraform_state_bucket
     credentials:
       credentials.json: !Secret credentials
 - name: provision-gke-with-terraform
