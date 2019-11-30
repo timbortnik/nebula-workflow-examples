@@ -61,7 +61,7 @@ steps:
   dependsOn: deploy-to-gke
   image: projectnebula/kubectl
   spec:
-    command: delete
+    command: delete-cluster
     file: example-workflows/gke-provision-and-deploy-workflow/deploy/deploy.yaml
     namespace: default
     cluster:
