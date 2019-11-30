@@ -27,7 +27,7 @@ steps:
 - name: provision-gke-with-terraform
   dependsOn:
     - provision-gcs-storage-bucket
-  image: projectnebula/terraform
+  image: timbortnik/nebula-steps
   spec:
     backendConfig:
       bucket: !Secret terraform_state_bucket
@@ -42,6 +42,7 @@ steps:
     git:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
+    comand: apply
 - name: deploy-to-gke
   dependsOn: provision-gke-with-terraform
   image: projectnebula/kubectl
@@ -60,7 +61,7 @@ steps:
 - name: destroy-gke-with-terraform
   dependsOn:
     - deploy-to-gke
-  image: projectnebula/terraform
+  image: timbortnik/nebula-steps
   spec:
     backendConfig:
       bucket: !Secret terraform_state_bucket
