@@ -68,7 +68,7 @@ steps:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
 - name: drop-from-gke
-  dependsOn: provision-gke-with-terraform
+  dependsOn: deploy-to-gke
   image: projectnebula/kubectl
   spec:
     command: destroy
