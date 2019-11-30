@@ -20,7 +20,7 @@ steps:
       gcloud config set component_manager/disable_update_check true &&
       if gsutil ls | grep -q gs://$TERRAFORM_STATE_BUCKET; then exit 0; else gsutil mb -l us-west1 gs://$TERRAFORM_STATE_BUCKET; fi
   spec:
-    gcp_project: !Parameter project
+    gcp_project: !Secret project
     bucket: !Parameter terraform_state_bucket
     credentials:
       credentials.json: !Secret credentials
@@ -30,7 +30,7 @@ steps:
   image: projectnebula/terraform
   spec:
     backendConfig:
-      bucket: !Parameter terraform_state_bucket
+      bucket: !Secret terraform_state_bucket
     vars:
       gcp_region: us-west1
       gcp_location: us-west1-a
