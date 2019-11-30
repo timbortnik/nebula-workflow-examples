@@ -34,7 +34,7 @@ steps:
     vars:
       gcp_region: us-west1
       gcp_location: us-west1-a
-      gcp_project: !Parameter project
+      gcp_project: !Secret project
     workspace: production
     directory: example-workflows/gke-provision-and-deploy-workflow/infra/
     credentials:
@@ -57,18 +57,24 @@ steps:
     git:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
-- name: drop-from-gke
-  dependsOn: deploy-to-gke
-  image: projectnebula/kubectl
+- name: destroy-gke-with-terraform
+  dependsOn:
+    - deploy-to-gke
+  image: projectnebula/terraform
   spec:
-    command: clusters delete
-    file: example-workflows/gke-provision-and-deploy-workflow/deploy/deploy.yaml
-    namespace: default
-    cluster:
-      name: nebula-example-cluster
-      url: !Output [provision-gke-with-terraform, k8s_endpoint]
-      cadata: !Output [provision-gke-with-terraform, k8s_master_auth_cluster_ca_certificate]
-      token: !Output [provision-gke-with-terraform, k8s_current_access_token]
+    backendConfig:
+      bucket: !Secret terraform_state_bucket
+    vars:
+      gcp_region: us-west1
+      gcp_location: us-west1-a
+      gcp_project: !Secret project
+    workspace: production
+    directory: example-workflows/gke-provision-and-deploy-workflow/infra/
+    credentials:
+      credentials.json: !Secret credentials
     git:
       name: nebula-workflow-examples
-      repository: https://github.com/puppetlabs/nebula-workflow-examples.git      
+      repository: https://github.com/puppetlabs/nebula-workflow-examples.git
+    command: destory
+
+      
