@@ -29,6 +29,7 @@ steps:
     - provision-gcs-storage-bucket
   image: timbortnik/nebula-steps
   spec:
+    comand: apply
     backendConfig:
       bucket: !Secret terraform_state_bucket
     vars:
@@ -42,7 +43,6 @@ steps:
     git:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
-    comand: apply
 - name: deploy-to-gke
   dependsOn: provision-gke-with-terraform
   image: projectnebula/kubectl
@@ -63,6 +63,7 @@ steps:
     - deploy-to-gke
   image: timbortnik/nebula-steps
   spec:
+    command: destory
     backendConfig:
       bucket: !Secret terraform_state_bucket
     vars:
@@ -76,6 +77,4 @@ steps:
     git:
       name: nebula-workflow-examples
       repository: https://github.com/puppetlabs/nebula-workflow-examples.git
-    command: destory
 
-      
