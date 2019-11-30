@@ -63,7 +63,7 @@ steps:
     - deploy-to-gke
   image: timbortnik/nebula-steps
   spec:
-    command: destory
+    command: destroy
     backendConfig:
       bucket: !Secret terraform_state_bucket
     vars:
