@@ -29,7 +29,6 @@ steps:
     - provision-gcs-storage-bucket
   image: timbortnik/nebula-steps
   spec:
-    command: apply
     backendConfig:
       bucket: !Secret terraform_state_bucket
     vars:
